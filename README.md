@@ -4,11 +4,9 @@ Este é um repositório para a aplicação **Consulta Back**, que oferece as seg
 
 ## Funcionalidades
 
-- **Consulta de Dados:** A aplicação permite a consulta de dados a partir de um banco de dados.
-
 - **Autenticação de Usuário:** Oferece autenticação de usuário para acesso aos recursos da aplicação.
 
-- **Gerenciamento de Dados:** Possibilita o gerenciamento de dados, incluindo adicionar, editar e excluir informações do banco de dados.
+- **Gerenciamento de Dados:** Possibilita o gerenciamento de dados, incluindo adicionar, editar e excluir informações.
 
 - **API RESTful:** Fornece uma API RESTful para integração com outras aplicações ou serviços.
 
