@@ -1,26 +1,21 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+import statusRoutes from './routes/statusRoutes';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Simulando uma fonte de dados de status de envio (substitua com dados reais)
-const statusData: Record<string, string> = {
-    '123': 'Em trânsito',
-    '456': 'Entregue',
-    '789': 'Aguardando retirada',
-};
+app.use('/status', statusRoutes);
 
-app.get('/status/:orderNumber', (req: Request, res: Response) => {
-    const orderNumber = req.params.orderNumber;
+// Middleware de Logs
+app.use((req: Request, res: Response, next: NextFunction) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
 
-    // Consultar a fonte de dados para obter o status do pedido (substitua com sua lógica real)
-    const status = statusData[orderNumber];
-
-    if (status) {
-        res.json({ orderNumber, status });
-    } else {
-        res.status(404).json({ error: 'Número do pedido não encontrado' });
-    }
+// Middleware de Tratamento de Erros
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Erro interno do servidor' });
 });
 
 app.listen(port, () => {
